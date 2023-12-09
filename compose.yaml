@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  mail:
+    build: mail
+    ports:
+    - "25:25"
+    - "110:110"
+    volumes:
+    - "./config.json:/app/config.json"
+  
