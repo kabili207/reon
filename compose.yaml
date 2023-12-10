@@ -8,23 +8,25 @@ services:
     - "110:110"
     volumes:
     - "./config.json:/app/config.json"
-  
-  web:
-    build: web
-    volumes:
-    - "./config.json:/var/config.json"
-    extra_hosts:
-    - "smtp-server:10.77.2.2"
-  
+
   cron:
     build: app
     volumes:
     - "./config.json:/app/config.json"
   
+  web:
+    build:
+      context: web
+      dockerfile: docker/php.dockerfile
+    volumes:
+    - "./config.json:/var/config.json"
+    extra_hosts:
+    # sendmail requires valid SMTP server for sign-up
+    - "smtp-server:10.77.2.2"
+  
   nginx:
-    image: nginx:alpine
+    build:
+      context: web
+      dockerfile: docker/nginx.dockerfile
     ports:
     - "80:80"
-    volumes:
-    - "./web/htdocs:/var/www/htdocs:ro"
-    - "./web/nginx.docker.conf:/etc/nginx/conf.d/default.conf:ro"
