@@ -16,6 +16,11 @@ services:
     extra_hosts:
     - "smtp-server:10.77.2.2"
   
+  cron:
+    build: app
+    volumes:
+    - "./config.json:/app/config.json"
+  
   nginx:
     image: nginx:alpine
     ports:

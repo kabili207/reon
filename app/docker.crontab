@@ -1,0 +1,7 @@
+
+0 * * * * root dotnet /app/crystal-trade-corner/CGBPokemonCronJob.dll bxtj /app/config.json >/proc/1/fd/1 2>/proc/1/fd/2
+58 * * * * root dotnet /app/crystal-trade-corner/CGBPokemonCronJob.dll bxte /app/config.json >/proc/1/fd/1 2>/proc/1/fd/2
+55 * * * * root node /app/pokemon-battle/index.js -c /app/config.json >/proc/1/fd/1 2>/proc/1/fd/2
+56 * * * * root node /app/pokemon-exchange/index.js -c /app/config.json >/proc/1/fd/1 2>/proc/1/fd/2
+
+# An empty line is required at the end of this file for a valid cron file.

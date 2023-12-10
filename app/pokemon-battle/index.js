@@ -1,7 +1,17 @@
 const fs = require("fs");
+const program = require('commander');
 const mysql = require("mysql2/promise");
 
-const config = JSON.parse(fs.readFileSync("../../config.json"));
+const defaultPath = path.resolve(__dirname, "..", "..", "config.json");
+
+program
+  .usage('[OPTIONS]...')
+  .option('-c, --config <path>', 'Config file path.', defaultPath)
+  .parse(process.argv);
+
+const options = program.opts();
+const config = JSON.parse(fs.readFileSync(options.config));
+
 const mysqlConfig = {
 	host: config["mysql_host"],
 	user: config["mysql_user"],
