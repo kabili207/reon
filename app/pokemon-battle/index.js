@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require('path');
 const program = require('commander');
 const mysql = require("mysql2/promise");
 
