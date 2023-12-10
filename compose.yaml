@@ -30,3 +30,21 @@ services:
       dockerfile: docker/nginx.dockerfile
     ports:
     - "80:80"
+
+  # Comment this section to use external DB
+  mariadb:
+    image: mariadb
+    environment:
+    - MYSQL_USER
+    - MYSQL_PASSWORD
+    - MYSQL_DATABASE
+    - MYSQL_ROOT_PASSWORD
+    ports:
+    # Uncomment for access to mysql outside of compose stack
+    #- "3306:3306"
+    volumes:
+    - "db:/var/lib/mysql"
+    - "./tables.sql:/docker-entrypoint-initdb.d/1_tables.sql"
+      
+volumes:
+  db:
