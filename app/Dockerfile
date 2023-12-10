@@ -9,7 +9,7 @@ WORKDIR /app
 COPY pokemon-exchange/package.json pokemon-exchange/package-lock.json* ./
 RUN npm ci
 
-
+# Cron container based on https://github.com/AnalogJ/docker-cron
 FROM node:18-alpine AS runner
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

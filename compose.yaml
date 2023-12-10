@@ -39,8 +39,8 @@ services:
     - MYSQL_PASSWORD
     - MYSQL_DATABASE
     - MYSQL_ROOT_PASSWORD
-    ports:
     # Uncomment for access to mysql outside of compose stack
+    #ports:
     #- "3306:3306"
     volumes:
     - "db:/var/lib/mysql"
